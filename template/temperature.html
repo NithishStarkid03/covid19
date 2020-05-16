@@ -1,0 +1,30 @@
+<html>
+<body>
+ <form action="" method="post">
+ {%csrf_token %}
+ <table>
+<tr>
+<td align="center" colspan="3"><h3>Temperature Converter</h3></td>
+</tr>
+<tr>
+<td align="center">Input</td>
+<td></td>
+<td align="center">Ans</td>
+</tr>
+<tr>
+<td><input type="number" name="t1" value={{temp.t1}} required></td>
+<td><select name="type">
+  <option value="ctf" {{temp.s1}}>Celcius to Fahrenheit</option>
+  <option value="ftc" {{temp.s2}}>Fahrenheit to Celsius</option>
+  <option value="ctk" {{temp.s3}}>Celcius to Kelvin</option>
+  <option value="ktc" {{temp.s4}}>Kelvin to Celcius</option>
+</select></td>
+<td><input type="number" readonly name="t2" value="{{temp.t2}}"></td>
+</tr>
+<tr>
+<td colspan="3" align="center"><input type="submit" value="Convert"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

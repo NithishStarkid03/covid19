@@ -1,0 +1,191 @@
+<html>
+    <head>
+        <title>STARKID UPDATE</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <blockquote class="blockquote text-center">
+        <h1 class="display-4">COVID-19 INDIA TRACKER</h1>
+        <footer class="blockquote-footer">The so called <cite title="Source Title">A Starkid Analysis</cite></footer>
+        </blockquote>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+            jQuery(document).ready(function () {
+      jQuery(".skillbar").each(function () {
+        jQuery(this)
+          .find(".skillbar-bar")
+          .animate(
+            {
+              width: jQuery(this).attr("data-percent")
+            },
+            6000
+          );
+      });
+    });
+    
+    jQuery(".Count").each(function () {
+      var $this = $(this);
+      jQuery({ Counter: 0 }).animate(
+        { Counter: $this.text() },
+        {
+          duration: 6000,
+          easing: "swing",
+          step: function () {
+            $this.text(Math.ceil(this.Counter));
+          }
+        }
+      );
+    });
+    
+       </script>     
+        <script>
+          window.onload = function() {
+          var a=parseFloat("{{content1}}")
+          var b=parseFloat("{{content2}}")
+          var act=(b/a)*100
+          var c=parseFloat("{{content3}}")
+          var rec=(c/a)*100 
+          var d=parseFloat("{{content4}}")
+          var dead=(d/a)*100
+          var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            title: {
+              text: "DAILY CASES ANALYSIS"
+            },
+            data: [{
+              type: "pie",
+              startAngle: 240,
+              yValueFormatString: "##0.00\"%\"",
+              indexLabel: "{label} {y}",
+              dataPoints: [
+                {y: act, label: "ACTIVE"},
+                {y: rec, label: "RECOVERED"},
+                {y: dead, label: "DEATH"}
+              ]
+            }]
+          });
+          chart.render();
+          
+          }
+          </script>
+          
+       <style>
+          
+         
+
+.skillbar {
+	position:relative;
+	display:block;
+	margin-bottom:15px;
+	width:100%;
+	background:#eee;
+	height:35px;
+	border-radius:3px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	-webkit-transition:0.4s linear;
+	-moz-transition:0.4s linear;
+	-ms-transition:0.4s linear;
+	-o-transition:0.4s linear;
+	transition:0.4s linear;
+	-webkit-transition-property:width, background-color;
+	-moz-transition-property:width, background-color;
+	-ms-transition-property:width, background-color;
+	-o-transition-property:width, background-color;
+	transition-property:width, background-color;
+}
+
+.skillbar-title {
+	position:absolute;
+	top:0;
+	left:0;
+width:110px;
+	font-weight:bold;
+	font-size:16px;
+	color:#ffffff;
+	background:#6adcfa;
+	-webkit-border-top-left-radius:3px;
+	-webkit-border-bottom-left-radius:4px;
+	-moz-border-radius-topleft:3px;
+	-moz-border-radius-bottomleft:3px;
+	border-top-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+
+.skillbar-title span {
+	display:block;
+	background:rgba(0, 0, 0, 0.1);
+	padding:0 20px;
+	height:35px;
+	line-height:35px;
+	-webkit-border-top-left-radius:3px;
+	-webkit-border-bottom-left-radius:3px;
+	-moz-border-radius-topleft:3px;
+	-moz-border-radius-bottomleft:3px;
+	border-top-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+
+.skillbar-bar {
+	height:35px;
+	width:0px;
+	background:#6adcfa;
+	border-radius:3px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+}
+
+.skill-bar-percent {
+    font-weight:bold;
+	font-size:16px;
+	position:absolute;
+	right:10px;
+	top:0;
+	font-size:11px;
+	height:35px;
+	line-height:35px;
+	color:#ffffff;
+	color:rgba(0, 0, 0, 0.4);
+}
+
+       </style>
+    </head>
+    <body>
+        <div class="skillbar clearfix " data-percent="95%">
+            <div class="skillbar-title" style="background: #d35400;"><span>TOTAL</span></div>
+            <div class="skillbar-bar" style="background: #e67e22;"></div>
+            <div class="skill-bar-percent Count">{{content1}}</div>
+        </div> <!-- End Skill Bar -->
+        <div class="skillbar clearfix " data-percent="60%">
+            <div class="skillbar-title" style="background: #2980b9;"><span>ACTIVE</span></div>
+            <div class="skillbar-bar" style="background: #3498db;"></div>
+            <div class="skill-bar-percent Count">{{content2}}</div>
+        </div> <!-- End Skill Bar -->
+        <div class="skillbar clearfix " data-percent="35%">
+            <div class="skillbar-title" style="background: #0ce41e;"><span>CURED</span></div>
+            <div class="skillbar-bar" style="background: #7e9e59f1;"></div>
+            <div class="skill-bar-percent Count">{{content3}}</div>
+        </div> <!-- End Skill Bar -->
+        
+        <div class="skillbar clearfix " data-percent="10%">
+            <div class="skillbar-title" style="background: #0f0f0f;"><span>DEAD</span></div>
+            <div class="skillbar-bar" style="background: #384688;"></div>
+            <div class="skill-bar-percent Count">{{content4}}</div>
+        </div> <!-- End Skill Bar -->
+        
+        
+        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        
+        
+        
+        <!--
+        <div class="alert alert-secondary" role="alert">
+            <p><h1>{{content1}}</h1></p>
+            <p>{{content2}}</p>
+            <p>{{content3}}</p>
+            <p>{{content4}}</p>
+                 
+          </div>
+        -->
+           
+    </body>
+</html>
